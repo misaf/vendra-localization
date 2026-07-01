@@ -1,0 +1,71 @@
+{
+	"$schema": "https://getcomposer.org/schema.json",
+	"name": "misaf/vendra-localization",
+	"description": "Request locale resolution for Laravel applications.",
+	"license": "MIT",
+	"type": "vendra-module",
+	"keywords": [
+		"laravel",
+		"localization",
+		"locale",
+		"misaf",
+		"vendra"
+	],
+	"authors": [
+		{
+			"name": "Ehsan Mahmoodi",
+			"email": "misaf.1990@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"homepage": "https://github.com/misaf/vendra-localization",
+	"support": {
+		"issues": "https://github.com/misaf/vendra-localization/issues",
+		"source": "https://github.com/misaf/vendra-localization"
+	},
+	"require": {
+		"php": "^8.3",
+		"illuminate/contracts": "^12.0 || ^13.0",
+		"illuminate/http": "^12.0 || ^13.0",
+		"illuminate/support": "^12.0 || ^13.0",
+		"spatie/laravel-package-tools": "^1.0"
+	},
+	"require-dev": {
+		"larastan/larastan": "^3.0",
+		"laravel/pint": "^1.0",
+		"mockery/mockery": "^1.0",
+		"nunomaduro/collision": "^8.0",
+		"orchestra/testbench": "^10.0 || ^11.0",
+		"pestphp/pest": "^4.0",
+		"pestphp/pest-plugin-laravel": "^4.0"
+	},
+	"minimum-stability": "stable",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Misaf\\VendraLocalization\\": "src/",
+			"Misaf\\VendraLocalization\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": true,
+			"php-http/discovery": true
+		},
+		"optimize-autoloader": true,
+		"preferred-install": "dist",
+		"sort-packages": true
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Misaf\\VendraLocalization\\Providers\\LocalizationServiceProvider"
+			]
+		}
+	},
+	"scripts": {
+		"analyse": "vendor/bin/phpstan analyse",
+		"format": "vendor/bin/pint",
+		"test": "vendor/bin/pest"
+	}
+}

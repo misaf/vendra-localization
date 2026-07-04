@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-uses(Misaf\VendraLocalization\Tests\TestCase::class)->in('Feature');
+use Misaf\VendraLocalization\Tests\TestCase;
 
-uses(Misaf\VendraLocalization\Tests\TestCase::class)->in('Unit');
+pest()->extend(TestCase::class)->in('Feature', 'Unit');

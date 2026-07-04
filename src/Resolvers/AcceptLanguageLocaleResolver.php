@@ -5,18 +5,28 @@ declare(strict_types=1);
 namespace Misaf\VendraLocalization\Resolvers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Misaf\VendraLocalization\Contracts\LocaleResolver;
-use Misaf\VendraLocalization\Support\LocaleConfig;
+use Misaf\VendraLocalization\Contracts\ProvidesVaryHeaders;
 
-final readonly class AcceptLanguageLocaleResolver implements LocaleResolver
+final readonly class AcceptLanguageLocaleResolver implements LocaleResolver, ProvidesVaryHeaders
 {
-    public function __construct(
-        private LocaleConfig $localeConfig,
-    ) {}
-
-    public function resolve(Request $request): string
+    public function resolve(Request $request): ?string
     {
-        return $request->getPreferredLanguage($this->localeConfig->available())
-            ?? $this->localeConfig->fallback();
+        $header = (string) $request->headers->get('Accept-Language');
+
+        if ($header === '') {
+            return null;
+        }
+
+        return $request->getPreferredLanguage(array_values(array_filter(
+            Config::array('vendra-localization.supported_locales', []),
+            is_string(...),
+        )));
+    }
+
+    public function varyHeaders(): array
+    {
+        return ['Accept-Language'];
     }
 }

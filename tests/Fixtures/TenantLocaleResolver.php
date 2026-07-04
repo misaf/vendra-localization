@@ -7,10 +7,14 @@ namespace Misaf\VendraLocalization\Tests\Fixtures;
 use Illuminate\Http\Request;
 use Misaf\VendraLocalization\Contracts\LocaleResolver;
 
-final class TenantLocaleResolver implements LocaleResolver
+final readonly class TenantLocaleResolver implements LocaleResolver
 {
-    public function resolve(Request $request): string
+    public function __construct(
+        private ?string $locale = 'fa',
+    ) {}
+
+    public function resolve(Request $request): ?string
     {
-        return 'fa';
+        return $this->locale;
     }
 }

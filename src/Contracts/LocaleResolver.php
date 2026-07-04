@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 interface LocaleResolver
 {
     /**
-     * Resolve the preferred locale for the current request.
+     * Resolve the preferred locale for the current request, or return
+     * null when this resolver's source does not provide one.
      */
-    public function resolve(Request $request): string;
+    public function resolve(Request $request): ?string;
 }

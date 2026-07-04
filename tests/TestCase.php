@@ -15,7 +15,7 @@ abstract class TestCase extends OrchestraTestCase
     {
         $app['config']->set('app.locale', 'en');
         $app['config']->set('app.fallback_locale', 'en');
-        $app['config']->set('app.available_locales', ['en', 'de', 'fa', 'fr']);
+        $app['config']->set('vendra-localization.supported_locales', ['en', 'de', 'fa', 'fr']);
     }
 
     /**

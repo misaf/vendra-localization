@@ -15,7 +15,7 @@ function handleSetLocale(Request $request, string ...$sources): Response
 {
     return app(SetLocale::class)->handle(
         $request,
-        fn (Request $request): Response => new Response('ok'),
+        fn(Request $request): Response => new Response('ok'),
         ...$sources,
     );
 }
@@ -32,11 +32,11 @@ it('sets the resolved supported locale and Content-Language header', function (?
         ->and($response->headers->get('Vary'))
         ->toBeNull();
 })->with([
-    'supported locale' => ['fa', 'fa'],
-    'unsupported locale' => ['es', 'en'],
+    'supported locale'                     => ['fa', 'fa'],
+    'unsupported locale'                   => ['es', 'en'],
     'region variant of a supported locale' => ['fr-CA', 'fr'],
-    'underscored region variant' => ['fr_CA', 'fr'],
-    'no resolved locale' => [null, 'en'],
+    'underscored region variant'           => ['fr_CA', 'fr'],
+    'no resolved locale'                   => [null, 'en'],
 ]);
 
 it('matches supported locales after normalizing region separators', function (): void {

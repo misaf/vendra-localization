@@ -15,10 +15,10 @@ use Misaf\VendraLocalization\Tests\Fixtures\TenantLocaleResolver;
 
 function requestWithRouteLocale(?string $locale): Request
 {
-    $request = Request::create($locale === null ? '/api/products' : "/api/{$locale}/products");
-    $route = new Route('GET', $locale === null ? '/api/products' : '/api/{locale}/products', []);
+    $request = Request::create(null === $locale ? '/api/products' : "/api/{$locale}/products");
+    $route = new Route('GET', null === $locale ? '/api/products' : '/api/{locale}/products', []);
     $route->bind($request);
-    $request->setRouteResolver(fn (): Route => $route);
+    $request->setRouteResolver(fn(): Route => $route);
 
     return $request;
 }
@@ -27,8 +27,8 @@ function requestWithUserLocale(?string $locale): Request
 {
     $request = Request::create('/');
 
-    if ($locale !== null) {
-        $request->setUserResolver(fn (): object => (object) ['locale' => $locale]);
+    if (null !== $locale) {
+        $request->setUserResolver(fn(): object => (object) ['locale' => $locale]);
     }
 
     return $request;
@@ -38,8 +38,7 @@ function requestWithPreferredLocaleUser(string $locale): Request
 {
     $request = Request::create('/');
 
-    $request->setUserResolver(fn (): HasLocalePreference => new class($locale) implements HasLocalePreference
-    {
+    $request->setUserResolver(fn(): HasLocalePreference => new class ($locale) implements HasLocalePreference {
         public function __construct(
             private readonly string $locale,
         ) {}

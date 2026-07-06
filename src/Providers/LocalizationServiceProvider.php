@@ -24,7 +24,7 @@ final class LocalizationServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        $this->app->bind(LocaleResolver::class, fn (Application $app): LocaleResolver => ChainLocaleResolver::fromSources(
+        $this->app->bind(LocaleResolver::class, fn(Application $app): LocaleResolver => ChainLocaleResolver::fromSources(
             $app,
             Config::array('vendra-localization.resolvers'),
         ));

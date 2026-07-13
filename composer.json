@@ -1,6 +1,5 @@
 {
     "name": "misaf/vendra-localization",
-    "version": "0.0.7",
     "description": "Request locale resolution for Laravel applications.",
     "keywords": [
         "laravel",
@@ -48,13 +47,13 @@
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Misaf\\VendraLocalization\\Providers\\LocalizationServiceProvider"
             ]
-        },
-        "branch-alias": {
-            "dev-master": "13.x-dev"
         }
     },
     "scripts": {

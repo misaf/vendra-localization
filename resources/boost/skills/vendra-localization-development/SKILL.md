@@ -1,6 +1,6 @@
 ---
 name: vendra-localization-development
-description: "Use this skill when creating, modifying, reviewing, or testing the Vendra Localization module in app-modules/vendra-localization. Trigger for the LocaleResolver contract, the resolver chain (Accept-Language, query, route, user), the vendra.locale middleware, Vary-header handling, and localization service-provider wiring."
+description: "Use this skill when creating, modifying, reviewing, or testing the Vendra Localization module in packages/vendra-localization. Trigger for the LocaleResolver contract, the resolver chain (Accept-Language, query, route, user), the vendra.locale middleware, Vary-header handling, and localization service-provider wiring."
 ---
 
 # Vendra Localization
@@ -11,7 +11,7 @@ Always use this skill together with `modular` for module structure, `laravel-bes
 
 ## Module Boundary
 
-Treat `app-modules/vendra-localization` as framework-level request locale resolution.
+Treat `packages/vendra-localization` as framework-level request locale resolution.
 
 - Use namespace `Misaf\VendraLocalization`.
 - Own the `LocaleResolver` contract, resolver implementations, the resolver chain, the `vendra.locale` middleware, and `Vary`-header support here.
@@ -27,5 +27,5 @@ Treat `app-modules/vendra-localization` as framework-level request locale resolu
 
 - Keep tests purposeful: cover each resolver, the chain precedence, middleware application, and `Vary`-header output.
 - Keep Pest architecture tests in `tests/ArchTest.php`: the `php`, `security`, and `laravel` presets, plus `arch()->expect('Misaf\VendraLocalization')->not->toUse('Misaf\VendraTenant')`.
-- Run module checks: `composer --working-dir=app-modules/vendra-localization test` and `composer --working-dir=app-modules/vendra-localization analyse`.
+- Run module checks: `composer --working-dir=packages/vendra-localization test` and `composer --working-dir=packages/vendra-localization analyse`.
 - If PHP files changed, run `vendor/bin/pint --dirty --format agent`.

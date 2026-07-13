@@ -4,7 +4,7 @@ The `misaf/vendra-localization` package resolves the request locale for Laravel 
 
 ### Standards
 
-- Keep localization code inside `app-modules/vendra-localization` using the `Misaf\VendraLocalization` namespace.
+- Keep localization code inside `packages/vendra-localization` using the `Misaf\VendraLocalization` namespace.
 - This package owns the `Contracts\LocaleResolver`, the resolver chain (`ChainLocaleResolver`, `AcceptLanguageLocaleResolver`, `QueryLocaleResolver`, `RouteLocaleResolver`, `UserLocaleResolver`), the `vendra.locale` middleware, `ProvidesVaryHeaders`, and `LocalizationServiceProvider`.
 - Keep locale resolution generic and framework-level; do not embed domain-model assumptions. It has no domain models.
 - Keep the module tenant-agnostic: never reference a concrete tenant provider such as `Misaf\VendraTenant`.
